@@ -1,4 +1,4 @@
-package Analizo::Extractor::Doxyparse;
+package Analizo::Extractor::Pyan;
 
 use strict;
 use warnings;
@@ -45,16 +45,13 @@ sub feed {
   my ($self, $doxyparse_output, $line) = @_;
   my $yaml = undef;
 
-  print $doxyparse_output;
+  # eval { $yaml = Load($doxyparse_output) };
 
-  eval { $yaml = Load($doxyparse_output) };
   if ($@) {
     die $!;
   }
-  print "=============================================";
 
 
-  print $yaml;
 
   foreach my $full_filename (sort keys %$yaml) {
 
@@ -187,10 +184,13 @@ sub actually_process {
 
   eval {
     local $ENV{TEMP} = tmpdir();
-    open DOXYPARSE, "doxyparse - < $temp_filename |" or die "can't run doxyparse: $!";
+    # open DOXYPARSE, "doxyparse - < $temp_filename |" or die "can't run doxyparse: $!";
+
+    open PYAN, "pyan3 --uses --grouped --annotated --tgf \$(cat $temp_filename) |" or die "can't run pyan: $!";
+
     local $/ = undef;
-    my $doxyparse_output = <DOXYPARSE>;
-    close DOXYPARSE or die "doxyparse error";
+    my $doxyparse_output = <PYAN>;
+    close PYAN or die "doxyparse error";
     $self->feed($doxyparse_output);
     unlink $temp_filename;
   };
