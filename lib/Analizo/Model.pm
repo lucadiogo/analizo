@@ -344,6 +344,8 @@ sub callgraph {
   my $graph = Graph->new;
   $graph->set_graph_attribute('name', 'callgraph');
 
+  print "AQUI $args{group_by_module}" . $args{group_by_module} . "\n"; 
+
   if ($args{group_by_module}) {
     # listing dependencies grouped by module
     my $modules_dependencies = { };
@@ -372,9 +374,14 @@ sub callgraph {
 
   } else {
     # listing raw dependency info
+    print "ENTROU\n";
+    print "A: " . (grep { $self->_include_caller($_, @{$args{omit}}) } sort(keys(%{$self->calls}))) . "\n";
     foreach my $caller (grep { $self->_include_caller($_, @{$args{omit}}) } sort(keys(%{$self->calls}))) {
+
+      print "B: " . (grep { $self->_include_callee($_, $args{include_externals}, @{$args{omit}}) } sort(keys(%{$self->calls->{$caller}})))  . "\n";
       foreach my $callee (grep { $self->_include_callee($_, $args{include_externals}, @{$args{omit}}) } sort(keys(%{$self->calls->{$caller}}))) {
         my $style = _reftype_to_style($self->calls->{$caller}->{$callee});
+        print "C: " . $caller . " -> " . $callee ;
         $graph->add_edge($caller, $callee);
         $graph->set_edge_attribute($caller, $callee, 'style', $style);
         $graph->set_vertex_attribute($caller, 'group', $self->_function_to_module($caller));

@@ -51,6 +51,80 @@ sub feed {
     die $!;
   }
 
+  print "\n$doxyparse_output\n";
+
+  my @lines = split(/\n/, $doxyparse_output);
+
+  # my @declarations = map { $_ } @lines;
+
+  my $i = 0;
+
+  my %id_to_class = ();
+
+
+
+  while (@lines[$i] !~ /#/) {
+    my @values = split(/ /, @lines[$i]);
+
+    if (@values[1] =~ /.*\\n.*/) {
+      $id_to_class{%values[0]} = $values[1];
+      print @values[0] . " = " . @values[1] . "\n";
+
+      $self->_add_file("Arquivo");
+
+      $self->model->declare_module($values[1], "Arquivo");
+    }
+
+    $i += 1;
+    # $i = $i + 1;
+    # print($i . " " . @lines[$i]. " " . @lines[$i] !~ /#/ . "\n");
+  }
+
+
+  $i += 1;
+
+  while ($i < scalar(@lines)) {
+    my @values = split(/ /, @lines[$i]);
+
+    my $node1 = %id_to_class{@values[0]};
+    my $node2 = %id_to_class{@values[1]};
+    my $relation = @values[2];
+
+    print "$relation\n";
+
+    if ($relation =~ /U/) {
+      my $class = $node1;
+      my $inherits = $node2;
+      $self->model->add_inheritance($class, $inherits);
+
+      $self->model->add_protection($self->current_member, "");
+      $self->model->add_variable_use($class, "teste");
+
+    }
+    elsif ($relation =~ /I\n/) {
+      my $class = $node1;
+      my $who = $node2;
+      $self->model->add_inheritance($class, $who);
+
+      $self->model->add_call($class, $who, 'direct');
+
+    }
+    elsif ($relation =~ /D/) {
+      print "DDD\n";
+      my $class = $node1;
+      my $function = $node2;
+
+      $self->model->declare_function($class, $function); 
+    }
+
+
+
+    $id_to_class{%values[0]} = $values[1];
+    print @values[0] . " = " . @values[1] . "\n";
+  
+
+    $i += 1;
+  }
 
 
   foreach my $full_filename (sort keys %$yaml) {
@@ -186,7 +260,7 @@ sub actually_process {
     local $ENV{TEMP} = tmpdir();
     # open DOXYPARSE, "doxyparse - < $temp_filename |" or die "can't run doxyparse: $!";
 
-    open PYAN, "pyan3 --uses --grouped --annotated --tgf \$(cat $temp_filename) |" or die "can't run pyan: $!";
+    open PYAN, "pyan3 --uses --inherits --defines --grouped --annotated --tgf \$(cat $temp_filename) |" or die "can't run pyan: $!";
 
     local $/ = undef;
     my $doxyparse_output = <PYAN>;
