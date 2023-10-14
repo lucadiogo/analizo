@@ -45,16 +45,16 @@ sub feed {
   my ($self, $doxyparse_output, $line) = @_;
   my $yaml = undef;
 
-  print $doxyparse_output;
+  # print $doxyparse_output;
 
   eval { $yaml = Load($doxyparse_output) };
   if ($@) {
     die $!;
   }
-  print "=============================================";
+  # print "=============================================";
 
 
-  print $yaml;
+  # print $yaml;
 
   foreach my $full_filename (sort keys %$yaml) {
 
