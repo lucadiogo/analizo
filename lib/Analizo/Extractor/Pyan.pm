@@ -63,12 +63,12 @@ sub feed {
 
 
 
-  while (@lines[$i] !~ /#/) {
-    my @values = split(/ /, @lines[$i]);
+  while ($lines[$i] !~ /#/) {
+    my @values = split(/ /, $lines[$i]);
 
-    if (@values[1] =~ /.*\\n.*/) {
-      $id_to_class{%values[0]} = $values[1];
-      print @values[0] . " = " . @values[1] . "\n";
+    if ($values[1] =~ /.*\\n.*/) {
+      $id_to_class{$values[0]} = $values[1];
+      print $values[0] . " = " . $values[1] . "\n";
 
       $self->_add_file("Arquivo");
 
@@ -84,11 +84,11 @@ sub feed {
   $i += 1;
 
   while ($i < scalar(@lines)) {
-    my @values = split(/ /, @lines[$i]);
+    my @values = split(/ /, $lines[$i]);
 
-    my $node1 = %id_to_class{@values[0]};
-    my $node2 = %id_to_class{@values[1]};
-    my $relation = @values[2];
+    my $node1 = $id_to_class{$values[0]};
+    my $node2 = $id_to_class{$values[1]};
+    my $relation = $values[2];
 
     print "$relation\n";
 
@@ -119,8 +119,8 @@ sub feed {
 
 
 
-    $id_to_class{%values[0]} = $values[1];
-    print @values[0] . " = " . @values[1] . "\n";
+    $id_to_class{$values[0]} = $values[1];
+    print $values[0] . " = " . $values[1] . "\n";
   
 
     $i += 1;

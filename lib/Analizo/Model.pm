@@ -378,7 +378,7 @@ sub callgraph {
     print "A: " . (grep { $self->_include_caller($_, @{$args{omit}}) } sort(keys(%{$self->calls}))) . "\n";
     foreach my $caller (grep { $self->_include_caller($_, @{$args{omit}}) } sort(keys(%{$self->calls}))) {
 
-      print "B: " . (grep { $self->_include_callee($_, $args{include_externals}, @{$args{omit}}) } sort(keys(%{$self->calls->{$caller}})))  . "\n";
+      print "B: " . ( sort(keys(%{$self->calls->{$caller}})))  . "\n";
       foreach my $callee (grep { $self->_include_callee($_, $args{include_externals}, @{$args{omit}}) } sort(keys(%{$self->calls->{$caller}}))) {
         my $style = _reftype_to_style($self->calls->{$caller}->{$callee});
         print "C: " . $caller . " -> " . $callee ;
