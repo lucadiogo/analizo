@@ -50,11 +50,15 @@ sub feed {
   # if ($values[1] =~ /.*\\n.*/) {
     $values[1] =~ s/\\n.*//;
     $id_to_class{$values[0]} = ($values[1]);
-    print ($values[1]. "\n");
 
     # $self->_add_file("Arquivo");
 
-    $self->model->declare_module($values[1], "Arquivo");
+
+
+    if ($values[1] =~ s/Module://) {
+      $self->model->declare_module($values[1], $values[1]);
+    }
+
     $i += 1;
   }
 
@@ -64,22 +68,26 @@ sub feed {
   while ($i < scalar(@lines)) {
     my @values = split(/ /, $lines[$i]);
 
-    print $id_to_class{$values[0]} . " " . $id_to_class{$values[1]} . "\n";
-    my $node1 = $id_to_class{$values[0]};
-    my $node2 = $id_to_class{$values[1]};
+    # print $id_to_class{$values[0]} . " " . $id_to_class{$values[1]} . "\n";
+    my ($node1, $type1) = sanitize_input($id_to_class{$values[0]});
+    my ($node2, $type2) = sanitize_input($id_to_class{$values[1]});
+
+
 
     my $relation = $values[2];
 
     if ($relation =~ /U/) {
+      
+      if ($type2 =~ /FunctionDef/) {
       my $class = $node1;
-      my $used = $node2;
-      # $self->model->add_inheritance($class, $inherits);
-
-      # $self->model->add_protection($self->current_member, "");
-      # $self->model->add_variable_use($class, "teste");
-
-      $self->model->add_call($class, $used, 'direct');
-
+      my $function = $node2;
+        $self->model->add_call($class, $function, 'direct');
+      }
+      elsif ($type2 =~ /Attribute/) {
+        my $function = $node1;
+        my $variable = $node2;
+        $self->model->add_variable_use($function, $variable, 'direct');
+      }
     }
     elsif ($relation =~ /I/) {
       my $class = $node1;
@@ -90,11 +98,19 @@ sub feed {
 
     }
     elsif ($relation =~ /D/) {
-      my $class = $node1;
-      my $function = $node2;
 
-      $self->model->declare_function($class, $function);
-      #$self->model->declare_variable($class, $function);
+
+      if ($type2 =~ /FunctionDef/) {
+        my $class = $node1;
+        my $function = $node2;
+        $self->model->declare_function($class, $function);
+      }
+      elsif ($type2 =~ /Attribute/) {
+        my $function = $node1;
+        my $variable = $node2;
+      
+        $self->model->declare_variable($function, $variable);
+      }
     }
 
 
@@ -196,7 +212,16 @@ sub feed {
       }
     }
   }
-  print Dumper $self->model;
+  # print Dumper $self->model;
+}
+
+sub sanitize_input {
+  my ($input) = @_;
+
+  my ($type, $name) = split(/->/, $input);
+
+  return ($name, $type);
+
 }
 
 # concat module with symbol (e.g. main::to_string)
@@ -235,7 +260,7 @@ sub actually_process {
     local $ENV{TEMP} = tmpdir();
     # open DOXYPARSE, "doxyparse - < $temp_filename |" or die "can't run doxyparse: $!";
 
-    open PYAN, "pyan3 -V --uses --inherits --defines --grouped --annotated --tgf \$(cat $temp_filename) --log ../loggg |" or die "can't run pyan: $!";
+    open PYAN, "pyan3 --uses --inherits --defines --grouped --annotated --tgf \$(cat $temp_filename) --log ../loggg |" or die "can't run pyan: $!";
 
     local $/ = undef;
     my $doxyparse_output = <PYAN>;
