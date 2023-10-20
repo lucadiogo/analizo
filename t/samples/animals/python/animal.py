@@ -19,8 +19,8 @@ class Dog(Mammal):
         return self.__name
 
 def main(): 
-    dog: Animal = Dog("Odie");
-    cat: Mammal = Cat("Garfield");
+    dog = Dog("Odie");
+    cat = Cat("Garfield");
     print(dog.name())
     print(cat.name())
 

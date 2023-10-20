@@ -9,6 +9,7 @@ use File::Temp qw/ tempfile /;
 use Cwd;
 use YAML::XS;
 use File::Spec::Functions qw/ tmpdir /;
+use Data::Dumper;
 
 sub new {
   my ($package, @options) = @_;
@@ -20,26 +21,6 @@ sub _add_file {
   push(@{$self->{files}}, $file);
 }
 
-sub _cpp_hack {
-  my ($self, $module) = @_;
-  my $current = $self->current_file;
-  if (defined($current) && $current =~ /^(.*)\.(h|hpp)$/) {
-    my $prefix = $1;
-    # look for a previously added .cpp/.cc/etc
-    my @implementations = grep { /^$prefix\.(cpp|cxx|cc)$/ } @{$self->{files}};
-    foreach my $file (@implementations) {
-      $self->model->declare_module($module, $file);
-    }
-  }
-  if (defined($current) && $current =~ /^(.*)\.(cpp|cxx|cc)$/) {
-    my $prefix = $1;
-    # look for a previously added .h/.hpp/etc
-    my @implementations = grep { /^$prefix\.(h|hpp)$/ } @{$self->{files}};
-    foreach my $file (@implementations) {
-      $self->model->declare_module($module, $file);
-    }
-  }
-}
 
 sub feed {
   my ($self, $doxyparse_output, $line) = @_;
@@ -66,15 +47,14 @@ sub feed {
   while ($lines[$i] !~ /#/) {
     my @values = split(/ /, $lines[$i]);
 
-    # if ($values[1] =~ /.*\\n.*/) {
-    if(1) {
-      $id_to_class{$values[0]} = $values[1];
+  # if ($values[1] =~ /.*\\n.*/) {
+    $values[1] =~ s/\\n.*//;
+    $id_to_class{$values[0]} = ($values[1]);
+    print ($values[1]. "\n");
 
-      # $self->_add_file("Arquivo");
+    # $self->_add_file("Arquivo");
 
-      $self->model->declare_module($values[1], "Arquivo");
-    }
-
+    $self->model->declare_module($values[1], "Arquivo");
     $i += 1;
   }
 
@@ -84,8 +64,10 @@ sub feed {
   while ($i < scalar(@lines)) {
     my @values = split(/ /, $lines[$i]);
 
+    print $id_to_class{$values[0]} . " " . $id_to_class{$values[1]} . "\n";
     my $node1 = $id_to_class{$values[0]};
     my $node2 = $id_to_class{$values[1]};
+
     my $relation = $values[2];
 
     if ($relation =~ /U/) {
@@ -111,14 +93,13 @@ sub feed {
       my $class = $node1;
       my $function = $node2;
 
-      # $self->model->declare_function($class, $function);
-      $self->model->declare_variable($class, $function);
+      $self->model->declare_function($class, $function);
+      #$self->model->declare_variable($class, $function);
     }
 
 
     $i += 1;
   }
-
 
   foreach my $full_filename (sort keys %$yaml) {
 
@@ -215,6 +196,7 @@ sub feed {
       }
     }
   }
+  print Dumper $self->model;
 }
 
 # concat module with symbol (e.g. main::to_string)
@@ -253,7 +235,7 @@ sub actually_process {
     local $ENV{TEMP} = tmpdir();
     # open DOXYPARSE, "doxyparse - < $temp_filename |" or die "can't run doxyparse: $!";
 
-    open PYAN, "pyan3 --uses --inherits --defines --grouped --annotated --tgf \$(cat $temp_filename) |" or die "can't run pyan: $!";
+    open PYAN, "pyan3 -V --uses --inherits --defines --grouped --annotated --tgf \$(cat $temp_filename) --log ../loggg |" or die "can't run pyan: $!";
 
     local $/ = undef;
     my $doxyparse_output = <PYAN>;
