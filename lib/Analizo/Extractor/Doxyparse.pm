@@ -9,7 +9,6 @@ use File::Temp qw/ tempfile /;
 use Cwd;
 use YAML::XS;
 use File::Spec::Functions qw/ tmpdir /;
-use Data::Dumper;
 
 sub new {
   my ($package, @options) = @_;
@@ -152,8 +151,6 @@ sub feed {
       }
     }
   }
-
-  print Dumper $self->model;
 }
 
 # concat module with symbol (e.g. main::to_string)

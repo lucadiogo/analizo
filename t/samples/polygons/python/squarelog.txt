@@ -1,0 +1,384 @@
+========== pass 1, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from tetragon import ['Tetragon'], square.py:1
+Set Tetragon in <Scope: module > to <Node import:tetragon.Tetragon>
+From setting name Tetragon to <Node import:tetragon.Tetragon>
+Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+New edge added for Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+ClassDef Square, square.py:3
+Def from <Node module:square> to Class <Node class:square.Square>
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Tetragon in context <class 'ast.Load'>, square.py:3
+Get Tetragon in <Scope: class Square>, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+New edge added for Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+FunctionDef area, square.py:4
+Def from <Node class:square.Square> to Function <Node method:square.Square.area>
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f2947368ac0> 
+ATTR 2: <ast.Attribute object at 0x7f2947368ac0> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+New edge added for Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+Constant 2, square.py:5
+Resolving base classes
+Get Tetragon in <Scope: module >, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+All base classes (non-recursive, local level only): {<Node class:square.Square>: [<Node import:tetragon.Tetragon>]}
+Resolving method resolution order (MRO) for all analyzed classes
+MRO: analyzing class <Node class:square.Square>
+MRO: C3 linearizing <Node class:square.Square>
+MRO: C3 linearizing <Node import:tetragon.Tetragon>
+MRO: C3 linearized <Node import:tetragon.Tetragon>, result [<Node import:tetragon.Tetragon>]
+MRO: parents of <Node class:square.Square>: [<Node import:tetragon.Tetragon>]
+MRO: C3 merging [[<Node import:tetragon.Tetragon>], [<Node import:tetragon.Tetragon>]]
+MRO: C3 merge: out: [], lists: [[<Node import:tetragon.Tetragon>], [<Node import:tetragon.Tetragon>]]
+MRO: C3 merge: heads: [<Node import:tetragon.Tetragon>, <Node import:tetragon.Tetragon>], tails: [[], []]
+MRO: C3 merge: chose head <Node import:tetragon.Tetragon>
+MRO: C3 merge: out: [<Node import:tetragon.Tetragon>], lists: [[], []]
+MRO: C3 linearized <Node class:square.Square>, result [<Node class:square.Square>, <Node import:tetragon.Tetragon>]
+Method resolution order (MRO) for all analyzed classes: {<Node class:square.Square>: [<Node class:square.Square>, <Node import:tetragon.Tetragon>]}
+========== pass 2, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from tetragon import ['Tetragon'], square.py:1
+Set Tetragon in <Scope: module > to <Node import:tetragon.Tetragon>
+From setting name Tetragon to <Node import:tetragon.Tetragon>
+Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+ClassDef Square, square.py:3
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Tetragon in context <class 'ast.Load'>, square.py:3
+Get Tetragon in <Scope: class Square>, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+FunctionDef area, square.py:4
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f2947313610> 
+ATTR 2: <ast.Attribute object at 0x7f2947313610> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Name self in context <class 'ast.Load'>, square.py:5
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+Constant 2, square.py:5
+Contracting non-existent from <Node module:square> to <Node import:tetragon.Tetragon> as <Node ---:*.Tetragon>
+Contracting non-existent from <Node class:square.Square> to <Node import:tetragon.Tetragon> as <Node ---:*.Tetragon>
+Contracting non-existent from <Node method:square.Square.area> to <Node attribute:square.Square._width> as <Node ---:*._width>
+Looking at square
+Coloring square from file 'square.py'
+Looking at Square
+Coloring Square from file 'square.py'
+New namespace square
+Looking at area
+Coloring area from file 'square.py'
+New namespace square.Square, old was square
+<class 'pyan.writers.TgfWriter'> running
+========== pass 1, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from polygon import ['Polygon'], square.py:1
+Set Polygon in <Scope: module > to <Node import:polygon.Polygon>
+From setting name Polygon to <Node import:polygon.Polygon>
+Use from <Node module:square> to ImportFrom <Node import:polygon.Polygon>
+New edge added for Use from <Node module:square> to ImportFrom <Node import:polygon.Polygon>
+ClassDef Square, square.py:3
+Def from <Node module:square> to Class <Node class:square.Square>
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Polygon in context <class 'ast.Load'>, square.py:3
+Get Polygon in <Scope: class Square>, found in <Scope: module >, value <Node import:polygon.Polygon>
+Use from <Node class:square.Square> to Name <Node import:polygon.Polygon>
+New edge added for Use from <Node class:square.Square> to Name <Node import:polygon.Polygon>
+FunctionDef area, square.py:4
+Def from <Node class:square.Square> to Function <Node method:square.Square.area>
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f6a41664ac0> 
+ATTR 2: <ast.Attribute object at 0x7f6a41664ac0> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+New edge added for Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+Constant 2, square.py:5
+Resolving base classes
+Get Polygon in <Scope: module >, found in <Scope: module >, value <Node import:polygon.Polygon>
+All base classes (non-recursive, local level only): {<Node class:square.Square>: [<Node import:polygon.Polygon>]}
+Resolving method resolution order (MRO) for all analyzed classes
+MRO: analyzing class <Node class:square.Square>
+MRO: C3 linearizing <Node class:square.Square>
+MRO: C3 linearizing <Node import:polygon.Polygon>
+MRO: C3 linearized <Node import:polygon.Polygon>, result [<Node import:polygon.Polygon>]
+MRO: parents of <Node class:square.Square>: [<Node import:polygon.Polygon>]
+MRO: C3 merging [[<Node import:polygon.Polygon>], [<Node import:polygon.Polygon>]]
+MRO: C3 merge: out: [], lists: [[<Node import:polygon.Polygon>], [<Node import:polygon.Polygon>]]
+MRO: C3 merge: heads: [<Node import:polygon.Polygon>, <Node import:polygon.Polygon>], tails: [[], []]
+MRO: C3 merge: chose head <Node import:polygon.Polygon>
+MRO: C3 merge: out: [<Node import:polygon.Polygon>], lists: [[], []]
+MRO: C3 linearized <Node class:square.Square>, result [<Node class:square.Square>, <Node import:polygon.Polygon>]
+Method resolution order (MRO) for all analyzed classes: {<Node class:square.Square>: [<Node class:square.Square>, <Node import:polygon.Polygon>]}
+========== pass 2, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from polygon import ['Polygon'], square.py:1
+Set Polygon in <Scope: module > to <Node import:polygon.Polygon>
+From setting name Polygon to <Node import:polygon.Polygon>
+Use from <Node module:square> to ImportFrom <Node import:polygon.Polygon>
+ClassDef Square, square.py:3
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Polygon in context <class 'ast.Load'>, square.py:3
+Get Polygon in <Scope: class Square>, found in <Scope: module >, value <Node import:polygon.Polygon>
+Use from <Node class:square.Square> to Name <Node import:polygon.Polygon>
+FunctionDef area, square.py:4
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f6a4160b610> 
+ATTR 2: <ast.Attribute object at 0x7f6a4160b610> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Name self in context <class 'ast.Load'>, square.py:5
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+Constant 2, square.py:5
+Contracting non-existent from <Node module:square> to <Node import:polygon.Polygon> as <Node ---:*.Polygon>
+Contracting non-existent from <Node class:square.Square> to <Node import:polygon.Polygon> as <Node ---:*.Polygon>
+Contracting non-existent from <Node method:square.Square.area> to <Node attribute:square.Square._width> as <Node ---:*._width>
+Looking at square
+Coloring square from file 'square.py'
+Looking at Square
+Coloring Square from file 'square.py'
+New namespace square
+Looking at area
+Coloring area from file 'square.py'
+New namespace square.Square, old was square
+<class 'pyan.writers.TgfWriter'> running
+========== pass 1, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from tetragon import ['Tetragon'], square.py:1
+Set Tetragon in <Scope: module > to <Node import:tetragon.Tetragon>
+From setting name Tetragon to <Node import:tetragon.Tetragon>
+Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+New edge added for Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+ClassDef Square, square.py:3
+Def from <Node module:square> to Class <Node class:square.Square>
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Tetragon in context <class 'ast.Load'>, square.py:3
+Get Tetragon in <Scope: class Square>, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+New edge added for Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+FunctionDef area, square.py:4
+Def from <Node class:square.Square> to Function <Node method:square.Square.area>
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f8efce68b50> 
+ATTR 2: <ast.Attribute object at 0x7f8efce68b50> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+========== pass 1, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from tetragon import ['Tetragon'], square.py:1
+Set Tetragon in <Scope: module > to <Node import:tetragon.Tetragon>
+From setting name Tetragon to <Node import:tetragon.Tetragon>
+Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+New edge added for Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+ClassDef Square, square.py:3
+Def from <Node module:square> to Class <Node class:square.Square>
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Tetragon in context <class 'ast.Load'>, square.py:3
+Get Tetragon in <Scope: class Square>, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+New edge added for Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+FunctionDef area, square.py:4
+Def from <Node class:square.Square> to Function <Node method:square.Square.area>
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f46f6454b50> 
+ATTR 2: <ast.Attribute object at 0x7f46f6454b50> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+========== pass 1, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from tetragon import ['Tetragon'], square.py:1
+Set Tetragon in <Scope: module > to <Node import:tetragon.Tetragon>
+From setting name Tetragon to <Node import:tetragon.Tetragon>
+Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+New edge added for Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+ClassDef Square, square.py:3
+Def from <Node module:square> to Class <Node class:square.Square>
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Tetragon in context <class 'ast.Load'>, square.py:3
+Get Tetragon in <Scope: class Square>, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+New edge added for Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+FunctionDef area, square.py:4
+Def from <Node class:square.Square> to Function <Node method:square.Square.area>
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f9bf2658b50> 
+ATTR 2: <ast.Attribute object at 0x7f9bf2658b50> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+New edge added for Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+Constant 2, square.py:5
+Resolving base classes
+Get Tetragon in <Scope: module >, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+All base classes (non-recursive, local level only): {<Node class:square.Square>: [<Node import:tetragon.Tetragon>]}
+Resolving method resolution order (MRO) for all analyzed classes
+MRO: analyzing class <Node class:square.Square>
+MRO: C3 linearizing <Node class:square.Square>
+MRO: C3 linearizing <Node import:tetragon.Tetragon>
+MRO: C3 linearized <Node import:tetragon.Tetragon>, result [<Node import:tetragon.Tetragon>]
+MRO: parents of <Node class:square.Square>: [<Node import:tetragon.Tetragon>]
+MRO: C3 merging [[<Node import:tetragon.Tetragon>], [<Node import:tetragon.Tetragon>]]
+MRO: C3 merge: out: [], lists: [[<Node import:tetragon.Tetragon>], [<Node import:tetragon.Tetragon>]]
+MRO: C3 merge: heads: [<Node import:tetragon.Tetragon>, <Node import:tetragon.Tetragon>], tails: [[], []]
+MRO: C3 merge: chose head <Node import:tetragon.Tetragon>
+MRO: C3 merge: out: [<Node import:tetragon.Tetragon>], lists: [[], []]
+MRO: C3 linearized <Node class:square.Square>, result [<Node class:square.Square>, <Node import:tetragon.Tetragon>]
+Method resolution order (MRO) for all analyzed classes: {<Node class:square.Square>: [<Node class:square.Square>, <Node import:tetragon.Tetragon>]}
+========== pass 2, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from tetragon import ['Tetragon'], square.py:1
+Set Tetragon in <Scope: module > to <Node import:tetragon.Tetragon>
+From setting name Tetragon to <Node import:tetragon.Tetragon>
+Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+ClassDef Square, square.py:3
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Tetragon in context <class 'ast.Load'>, square.py:3
+Get Tetragon in <Scope: class Square>, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+FunctionDef area, square.py:4
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f9bf2603340> 
+ATTR 2: <ast.Attribute object at 0x7f9bf2603340> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Name self in context <class 'ast.Load'>, square.py:5
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+Constant 2, square.py:5
+Contracting non-existent from <Node module:square> to <Node import:tetragon.Tetragon> as <Node ---:*.Tetragon>
+Contracting non-existent from <Node class:square.Square> to <Node import:tetragon.Tetragon> as <Node ---:*.Tetragon>
+Looking at square
+Coloring square from file 'square.py'
+Looking at Square
+Coloring Square from file 'square.py'
+New namespace square
+Looking at _width
+Coloring _width from file 'square.py'
+New namespace square.Square, old was square
+Looking at area
+Coloring area from file 'square.py'
+<class 'pyan.writers.TgfWriter'> running
+========== pass 1, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from tetragon import ['Tetragon'], square.py:1
+Set Tetragon in <Scope: module > to <Node import:tetragon.Tetragon>
+From setting name Tetragon to <Node import:tetragon.Tetragon>
+Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+New edge added for Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+ClassDef Square, square.py:3
+Def from <Node module:square> to Class <Node class:square.Square>
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Tetragon in context <class 'ast.Load'>, square.py:3
+Get Tetragon in <Scope: class Square>, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+New edge added for Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+FunctionDef area, square.py:4
+Def from <Node class:square.Square> to Function <Node method:square.Square.area>
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f283a658b50> 
+ATTR 2: <ast.Attribute object at 0x7f283a658b50> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+New edge added for Use from <Node method:square.Square.area> to <Node attribute:square.Square._width> (target obj <Node class:square.Square> known but target attr _width not resolved; maybe fwd ref or unanalyzed import)
+Constant 2, square.py:5
+Resolving base classes
+Get Tetragon in <Scope: module >, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+All base classes (non-recursive, local level only): {<Node class:square.Square>: [<Node import:tetragon.Tetragon>]}
+Resolving method resolution order (MRO) for all analyzed classes
+MRO: analyzing class <Node class:square.Square>
+MRO: C3 linearizing <Node class:square.Square>
+MRO: C3 linearizing <Node import:tetragon.Tetragon>
+MRO: C3 linearized <Node import:tetragon.Tetragon>, result [<Node import:tetragon.Tetragon>]
+MRO: parents of <Node class:square.Square>: [<Node import:tetragon.Tetragon>]
+MRO: C3 merging [[<Node import:tetragon.Tetragon>], [<Node import:tetragon.Tetragon>]]
+MRO: C3 merge: out: [], lists: [[<Node import:tetragon.Tetragon>], [<Node import:tetragon.Tetragon>]]
+MRO: C3 merge: heads: [<Node import:tetragon.Tetragon>, <Node import:tetragon.Tetragon>], tails: [[], []]
+MRO: C3 merge: chose head <Node import:tetragon.Tetragon>
+MRO: C3 merge: out: [<Node import:tetragon.Tetragon>], lists: [[], []]
+MRO: C3 linearized <Node class:square.Square>, result [<Node class:square.Square>, <Node import:tetragon.Tetragon>]
+Method resolution order (MRO) for all analyzed classes: {<Node class:square.Square>: [<Node class:square.Square>, <Node import:tetragon.Tetragon>]}
+========== pass 2, file 'square.py' ==========
+Scopes now: {'square': <Scope: module >, 'square.Square': <Scope: class Square>, 'square.Square.area': <Scope: function area>}
+Module square, square.py
+ImportFrom: from tetragon import ['Tetragon'], square.py:1
+Set Tetragon in <Scope: module > to <Node import:tetragon.Tetragon>
+From setting name Tetragon to <Node import:tetragon.Tetragon>
+Use from <Node module:square> to ImportFrom <Node import:tetragon.Tetragon>
+ClassDef Square, square.py:3
+Set Square in <Scope: module > to <Node class:square.Square>
+Name Tetragon in context <class 'ast.Load'>, square.py:3
+Get Tetragon in <Scope: class Square>, found in <Scope: module >, value <Node import:tetragon.Tetragon>
+Use from <Node class:square.Square> to Name <Node import:tetragon.Tetragon>
+FunctionDef area, square.py:4
+Set area in <Scope: class Square> to <Node method:square.Square.area>
+Method def: setting self name "self" to <Node class:square.Square>
+Attribute _width of self in context <class 'ast.Load'>, square.py:5
+Resolve self._width in context <class 'ast.Load'>
+ATTR: <ast.Attribute object at 0x7f283a603340> 
+ATTR 2: <ast.Attribute object at 0x7f283a603340> -> self
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+AQUI: Square square.Square
+Resolved to attr _width of <Node class:square.Square>
+Name self in context <class 'ast.Load'>, square.py:5
+Get self in <Scope: function area>, found in <Scope: function area>, value <Node class:square.Square>
+Constant 2, square.py:5
+Contracting non-existent from <Node module:square> to <Node import:tetragon.Tetragon> as <Node ---:*.Tetragon>
+Contracting non-existent from <Node class:square.Square> to <Node import:tetragon.Tetragon> as <Node ---:*.Tetragon>
+Looking at square
+Coloring square from file 'square.py'
+Looking at Square
+Coloring Square from file 'square.py'
+New namespace square
+Looking at _width
+Coloring _width from file 'square.py'
+New namespace square.Square, old was square
+Looking at area
+Coloring area from file 'square.py'
+<class 'pyan.writers.TgfWriter'> running
