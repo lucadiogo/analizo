@@ -152,6 +152,7 @@ sub feed {
       }
     }
   }
+
   print Dumper $self->model;
 }
 
@@ -183,6 +184,8 @@ sub actually_process {
     print $temp_handle "$input_file\n"
   }
   close $temp_handle;
+
+  # print STDERR  "FILES: $temp_filename \n";
 
   eval 'use Alien::Doxyparse';
   $ENV{PATH} = join(':', $ENV{PATH}, Alien::Doxyparse->bin_dir) unless $@;

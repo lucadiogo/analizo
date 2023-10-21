@@ -40,3 +40,11 @@ Feature: change cost degree
       | language | change_cost |
       | c        | 0.5         |
       | csharp   | 0.36        |
+
+  Scenario: "Cyclical Graph" project
+    Given I am in t/samples/cyclical_graph/<language>
+    When I run "analizo metrics --extractor Pyan ."
+    Then analizo must report that the project has change_cost = <change_cost>
+    Examples:
+      | language | change_cost |
+      | python   | 0.36        |

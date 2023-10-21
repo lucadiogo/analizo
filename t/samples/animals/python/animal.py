@@ -1,29 +1,6 @@
-class Animal:
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
     def name(self) -> str:
         pass
-
-class Mammal(Animal):
-    def close(self):
-        pass
-
-class Cat(Mammal):
-    def __init__ (self, name):
-        self.__name = name
-    def name(self) -> str:
-        return self.__name
-
-class Dog(Mammal):
-    def __init__ (self, name):
-        self.__name = name
-    def name(self) -> str:
-        return self.__name
-
-def main(): 
-    dog = Dog("Odie");
-    cat = Cat("Garfield");
-    print(dog.name())
-    print(cat.name())
-
-if __name__ == '__main__':
-    main()
-
