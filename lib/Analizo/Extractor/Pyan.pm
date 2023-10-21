@@ -23,18 +23,18 @@ sub _add_file {
 
 
 sub feed {
-  my ($self, $doxyparse_output, $line) = @_;
+  my ($self, $pyan_output, $line) = @_;
   my $yaml = undef;
 
-  # eval { $yaml = Load($doxyparse_output) };
+  # eval { $yaml = Load($pyan_output) };
 
   if ($@) {
     die $!;
   }
 
-  # print "\n$doxyparse_output\n";
+  # print "\n$pyan_output\n";
 
-  my @lines = split(/\n/, $doxyparse_output);
+  my @lines = split(/\n/, $pyan_output);
 
   # my @declarations = map { $_ } @lines;
 
@@ -263,9 +263,9 @@ sub actually_process {
     open PYAN, "pyan3 --uses --inherits --defines --grouped --annotated --tgf \$(cat $temp_filename) --log ../loggg |" or die "can't run pyan: $!";
 
     local $/ = undef;
-    my $doxyparse_output = <PYAN>;
+    my $pyan_output = <PYAN>;
     close PYAN or die "doxyparse error";
-    $self->feed($doxyparse_output);
+    $self->feed($pyan_output);
     unlink $temp_filename;
   };
   if($@) {
